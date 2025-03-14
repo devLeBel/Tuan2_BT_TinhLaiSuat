@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Lãi Suất</title>
+</head>
+<body>
+    <h1>Tính Lãi Suất</h1>
+    <form id="formlaisuat">
+        <label for="tien">Số tiền vay (VND):</label>
+        <input type="number" id="tien" name="tien" required><br><br>
+
+        <label for="lai">Phần trăm lãi suất / tháng (%):</label>
+        <input type="number" id="lai" name="lai" step="0.01" required><br><br>
+
+        <label for="nam">Số năm vay:</label>
+        <input type="number" id="nam" name="nam" required><br><br>
+
+        <button type="button" onclick="tinhlaisuat()">Tính</button>
+    </form>
+
+    <h2>Kết quả</h2>
+    <p id="tienlai">Lãi phải trả: </p>
+    <p id="tongtien">Tổng số tiền phải trả (gốc + lãi): </p>
+
+    <script>
+        function tinhlaisuat() {
+
+            const tien = parseFloat(document.getElementById('tien').value);
+            const lai = parseFloat(document.getElementById('lai').value) / 100;
+            const nam = parseFloat(document.getElementById('nam').value);
+
+            const thangvay = nam * 12;
+            const laisuatthang = tien * lai;
+            const laisuatnam = laisuatthang * thangvay;
+            const tonglaisuat = tien + laisuatnam;
+
+            document.getElementById('tienlai').innerText = `Lãi phải trả: ${laisuatnam} VND`;
+            document.getElementById('tongtien').innerText = `Tổng số tiền phải trả (gốc + lãi): ${tonglaisuat} VND`;
+        }
+    </script>
+</body>
+</html>
